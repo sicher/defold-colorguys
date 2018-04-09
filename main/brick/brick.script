@@ -1,0 +1,22 @@
+go.property("color", 0)
+
+local colors = require("main.colors")
+
+local anims = { [ colors.RED ] = hash("red"),
+				[ colors.BLUE ] = hash("blue"),
+				[ colors.GREEN ] = hash("green"),
+				[ colors.YELLOW ] = hash("yellow"),
+				[ colors.GREY ] = hash("grey") }
+
+function init(self)
+	if self.color > 0 then
+		local anim = anims[self.color]
+		msg.post("#sprite", "play_animation", { id = anim })
+	end
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("set_state") then
+		msg.post("eyes/controller#script", "set_state", { state = message.state } )
+	end
+end

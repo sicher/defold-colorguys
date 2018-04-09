@@ -1,6 +1,20 @@
+local colors = require("main.colors")
+
+-- iterate through the level tilemap's "setup" layer and replace every tile with
+-- a game object of the right type
+local function populate_level(self)
+	local x, y, w, h = tilemap.get_bounds("#tiles")
+
+	for ix=x,x+w-1 do
+		for iy=y, h+y-1 do
+			local t = tilemap.get_tile("#tiles", "setup", ix, iy)
+			
+		end
+	end
+end
+
 function init(self)
-	-- Add initialization code here
-	-- Remove this function if not needed
+	populate_level(self)
 end
 
 function final(self)

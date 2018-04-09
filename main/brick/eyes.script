@@ -1,3 +1,4 @@
+-- a few dummy properties used as timers.
 go.property("blink", 0)
 go.property("minimove", 0)
 go.property("micromove", 0)
@@ -25,7 +26,8 @@ blink = function(self)
 	msg.post("eyeball_left#sprite", "disable")
 	msg.post("eyeball_right#sprite", "disable")
 
-	go.animate("#", "blink", go.PLAYBACK_ONCE_FORWARD, 1, go.EASING_LINEAR, 0.2, 0, look)
+	local wait = math.random() / 10 + 0.1
+	go.animate("#", "blink", go.PLAYBACK_ONCE_FORWARD, 1, go.EASING_LINEAR, wait, 0, look)
 end
 
 minimove = function(self)
@@ -53,7 +55,6 @@ micromove = function(self)
 	go.animate("#", "micromove", go.PLAYBACK_ONCE_FORWARD, 1, go.EASING_LINEAR, wait, 0, micromove)	
 end
 
-
 function init(self)
 	self.state = "angry"
 	self.left_pos = go.get_position("eye_left")
@@ -64,15 +65,7 @@ function init(self)
 end
 
 function on_message(self, message_id, message, sender)
-	-- Add message-handling code here
-	-- Remove this function if not needed
-end
-
-function on_input(self, action_id, action)
-	-- Add input-handling code here
-	-- Remove this function if not needed
-end
-
-function on_reload(self)
-	self.state = "angry"
+	if message_id == hash("set_state") then
+		self.state = message.state
+	end
 end
