@@ -16,7 +16,11 @@ function init(self)
 end
 
 function on_message(self, message_id, message, sender)
-	if message_id == hash("set_state") then
-		msg.post("eyes/controller#script", "set_state", { state = message.state } )
+	if message_id == hash("on_correct_color") then
+		local state = "angry"
+		if message.correct then
+			state = "happy"
+		end
+		msg.post("facecontroller#script", "set_state", { state = state })		
 	end
 end

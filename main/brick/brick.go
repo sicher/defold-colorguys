@@ -1,5 +1,5 @@
 components {
-  id: "brick"
+  id: "script"
   component: "/main/brick/brick.script"
   position {
     x: 0.0

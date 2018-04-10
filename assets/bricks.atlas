@@ -49,6 +49,18 @@ images {
 images {
   image: "/assets/images/right_happy_blink.png"
 }
+images {
+  image: "/assets/images/mouth_angry_closed.png"
+}
+images {
+  image: "/assets/images/mouth_angry_open.png"
+}
+images {
+  image: "/assets/images/mouth_happy_closed.png"
+}
+images {
+  image: "/assets/images/mouth_happy_open.png"
+}
 margin: 0
 extrude_borders: 0
 inner_padding: 0
